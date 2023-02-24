@@ -151,6 +151,7 @@ function OpenVehicleSpawnerMenu()
                     return
                 end, vehicleProps.model, vehicleProps)
                 TriggerServerEvent('esx_society:removeVehicleFromGarage', 'taxi', vehicleProps)
+                ESX.CloseContext()
             end, function(menu)
                 CurrentAction = 'vehicle_spawner'
                 CurrentActionMsg = TranslateCap('spawner_prompt')
@@ -166,6 +167,7 @@ function OpenVehicleSpawnerMenu()
             ESX.TriggerServerCallback("esx_taxijob:SpawnVehicle", function()
                 ESX.ShowNotification(TranslateCap('vehicle_spawned'), "success")
             end, "taxi", {plate = "TAXI JOB"})
+            ESX.CloseContext()
         end, function(menu)
             CurrentAction = 'vehicle_spawner'
             CurrentActionMsg = TranslateCap('spawner_prompt')
