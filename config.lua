@@ -14,7 +14,7 @@ Config.Locale = GetConvar('esx:locale', 'en')
 Config.OxInventory                = ESX.GetConfig().OxInventory
 
 Config.AuthorizedVehicles = {
-	{model = 'taxi', label = 'Taxi'}
+	{model = 'taxi', title ='Taxi', icon = 'fas fa-car'}
 }
 
 Config.Zones = {
