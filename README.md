@@ -22,13 +22,13 @@ The Most Advanced and feature-rich Taxi System to-date!
 
 # Credits
 
-    - Mycroft (2.0 Creator) 
+    - Mycroft (Creator of 2.0/Complete Script Remake)
 
 # Legal
 
 esx_taxijob: Taxi Service - Anyone Need a Taxi?!
 
-Copyright (C) 2023 Mycroft, ESX-Framework
+Copyright (C) 2023 ESX-Framework
 
 This program Is free software: you can redistribute it And/Or modify it under the terms Of the GNU General Public License As published by the Free Software Foundation, either version 3 Of the License, Or (at your option) any later version.
 
