@@ -18,7 +18,7 @@ The Most Advanced and feature-rich Taxi System to-date!
 
 # Preview Video
 
-![[preview](https://clipchamp.com/watch/c14k3QtLQA2)](https://cdn.discordapp.com/attachments/1026947755513479208/1078462128576536626/TAXI_SYSTEM_12.png)
+[![Preview](https://cdn.discordapp.com/attachments/1026947755513479208/1078462128576536626/TAXI_SYSTEM_12.png)](https://clipchamp.com/watch/c14k3QtLQA2)
 
 # Credits
 
