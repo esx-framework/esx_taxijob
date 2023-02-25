@@ -110,16 +110,8 @@ CreateThread(function()
 end)
 
 function GetPlayerFromPed(Ped)
-	for _, player in ipairs(GetActivePlayers()) do
-		local ped = GetPlayerPed(player)
-
-		if DoesEntityExist(ped) then
-			if ped == Ped then
-				return GetPlayerServerId(player)
-			end
-		end
-	end
-	return false
+	local ply = NetworkGetPlayerIndexFromPed(Ped)
+	return ply > 0 and GetPlayerServerId(ply) or false
 end
 
 local movie = nil
