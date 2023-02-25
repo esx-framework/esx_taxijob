@@ -6,6 +6,7 @@ local DrawingTextUI = false
 local DrawingTextUI2 = false
 local Object = nil
 local InTaxiAsPassenger = false
+
 CreateThread(function()
 	local blip = AddBlipForCoord(Config.Positions.Cloakroom)
 	SetBlipSprite(blip, 198)
