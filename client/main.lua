@@ -286,7 +286,6 @@ RegisterNetEvent("taxi:start", function(netId)
 		end
 		RenderTarget = GetNamedRendertargetRenderId("taxi")
 	end
-	SetNetworkIdCanMigrate(ObjToNet(Object), false) -- make sure there is no migration
 	BeginScaleformMovieMethod(movie, "SET_TAXI_PRICE")
 	ScaleformMovieMethodAddParamInt(0) -- set default price
 	EndScaleformMovieMethod()
@@ -335,7 +334,6 @@ RegisterNetEvent("taxi:start", function(netId)
 									street = streetname
 								})
 							end
-							print(#(PlyCoords - CustomerCoords))
 							if #(PlyCoords - CustomerCoords) <= 10.0 then
 								if IsVehicleSeatFree(job_veh, 1) and not CustomerInVehicle then
 									BringVehicleToHalt(job_veh, 5.0, 4, false)
@@ -455,7 +453,7 @@ RegisterNetEvent("taxi:start", function(netId)
 									end
 								end
 							end
-						else
+						end
 							if ESX.PlayerData.job.name ~= "taxi" then
 								DeleteObject(Object)
 								SetModelAsNoLongerNeeded(joaat("prop_taxi_meter_2"))
@@ -476,7 +474,6 @@ RegisterNetEvent("taxi:start", function(netId)
 								end
 								break
 							end
-						end
 					end
 			else
 				DeleteObject(Object)
@@ -503,28 +500,31 @@ function GetRandomWalkingNPC(Coords)
 
 	for i = 1, #peds, 1 do
 		if IsPedHuman(peds[i]) and IsPedWalking(peds[i]) and not IsPedAPlayer(peds[i]) then
-			table.insert(search, peds[i])
+			search[#search +1] = peds[i]
 		end
 	end
 
-	if #search > 0 then
-		local npc = search[math.random(#search)]
-		local Dist = #(GetEntityCoords(npc) - Coords)
-		local tries = 0
-		while Dist < Config.MinimumNpcDistance do 
-			Wait(0)
-			npc = search[math.random(#search)]
-			Dist = #(GetEntityCoords(npc) - Coords)
-			tries += 1
-			if tries > 15 then
-				ESX.ShowNotification("No Customers Available, Please try again.", "error")
-				NPCMissions = false
-				return nil
-			end
-		end
-		return npc
+	if #search == 0 then
+		ESX.ShowNotification("No Customers Available, Please try again.", "error")
+		NPCMissions = false
+		return nil
 	end
 
+	local npc = search[math.random(#search)]
+	local Dist = #(GetEntityCoords(npc) - Coords)
+	local tries = 0
+	while Dist < Config.MinimumNpcDistance do 
+		Wait(0)
+		npc = search[math.random(#search)]
+		Dist = #(GetEntityCoords(npc) - Coords)
+		tries += 1
+		if tries > 15 then
+			ESX.ShowNotification("No Customers Available, Please try again.", "error")
+			NPCMissions = false
+			return nil
+		end
+	end
+	return npc
 end
 
 AddEventHandler("onResourceStop", function()
