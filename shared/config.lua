@@ -7,6 +7,7 @@ Config.ShowPriceToPassengers = true -- Sync the price value to passengers? (defa
 Config.PlateText             = "TAXI JOB" -- Licence Plate text, set to "" for no change. (default: "TAXI JOB")
 Config.DrawDistance          = 15.0 -- Marker Draw Distance (default: 15.0)
 Config.ForceWorkoutfit       = true -- Set User into work outfit upon start? (default: true)
+Config.MinimumNpcDistance    = 65 -- Minimum Distance For Finding NPCs (default: 65)
 
 Config.Marker = {
   Size    = {x = 1.0, y = 1.0, z = 1.0},

@@ -205,7 +205,7 @@ function OpenMenu()
 		if element.value == "toggle_npc" then
 			NPCMissions = not NPCMissions
 			if NPCMissions then
-				CurrentNPC = GetRandomWalkingNPC(GetEntityCoords(ESX.PlayerData.ped) + vector3(math.random(50, 300), math.random(50, 300), 0.0))
+				CurrentNPC = GetRandomWalkingNPC(GetEntityCoords(ESX.PlayerData.ped))
 			end
 		elseif element.value == "reset_value" then
 			playerprice = 0
@@ -323,7 +323,17 @@ RegisterNetEvent("taxi:start", function(netId)
 								SetEntityAsMissionEntity(CurrentNPC, true, true)
 								SetBlockingOfNonTemporaryEvents(CurrentNPC, true)
 								ClearPedTasksImmediately(CurrentNPC)
+								local zone = GetLabelText(GetNameOfZone(CustomerCoords))
+								local street = (GetStreetNameAtCoord(CustomerCoords.x, CustomerCoords.y, CustomerCoords.z))
+								local streetname = GetStreetNameFromHashKey(street)
 								ESX.ShowNotification("New Customer!", "info")
+								AddDestination(movie, {
+									sprite = 480,
+									colour = {r = 50, g = 250, b = 50},
+									label = "Pick up",
+									zone = zone,
+									street = streetname
+								})
 							end
 							print(#(PlyCoords - CustomerCoords))
 							if #(PlyCoords - CustomerCoords) <= 10.0 then
@@ -498,20 +508,23 @@ function GetRandomWalkingNPC(Coords)
 	end
 
 	if #search > 0 then
-		return search[math.random(#search)]
-	end
-
-	for i = 1, 250, 1 do
-		local ped = GetRandomPedAtCoord(Coords.x, Coords.y,Coords.z, math.random(100, 200), math.random(100, 200), math.random(50, 100), 26)
-
-		if DoesEntityExist(ped) and IsPedHuman(ped) and IsPedWalking(ped) and not IsPedAPlayer(ped) then
-			table.insert(search, ped)
+		local npc = search[math.random(#search)]
+		local Dist = #(GetEntityCoords(npc) - Coords)
+		local tries = 0
+		while Dist < Config.MinimumNpcDistance do 
+			Wait(0)
+			npc = search[math.random(#search)]
+			Dist = #(GetEntityCoords(npc) - Coords)
+			tries += 1
+			if tries > 15 then
+				ESX.ShowNotification("No Customers Available, Please try again.", "error")
+				NPCMissions = false
+				return nil
+			end
 		end
+		return npc
 	end
 
-	if #search > 0 then
-		return search[math.random(#search)]
-	end
 end
 
 AddEventHandler("onResourceStop", function()
