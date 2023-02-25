@@ -277,8 +277,8 @@ RegisterNetEvent("taxi:start", function(netId)
 		Wait(0)
 	end
 	Object = CreateObjectNoOffset(joaat("prop_taxi_meter_2"), GetEntityCoords(job_veh), true, true, false)
-	AttachEntityToEntity(Object, job_veh, GetEntityBoneIndexByName(job_veh, "Chassis"), vector3(-0.01, 0.75, 0.4),
-		vector3(-5.0, 0.0, 0.0), false, false, false, false, 2, true, 0)
+	AttachEntityToEntity(Object, job_veh, GetEntityBoneIndexByName(job_veh, "Chassis"), vector3(-0.05, 0.78, 0.39),
+		vector3(-6.0, 0.0, -10.0), false, false, false, false, 2, true, 0)
 	if not IsNamedRendertargetRegistered("taxi") then
 		RegisterNamedRendertarget("taxi", false)
 		if not IsNamedRendertargetLinked(GetEntityModel(Object)) then
