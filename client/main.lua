@@ -239,6 +239,30 @@ end
 
 ESX.RegisterInput("taxi:menu", "[Taxi] Open Menu", "keyboard", "f5", OpenMenu)
 
+function AddDestination(movie, settings)
+	BeginScaleformMovieMethod(movie, "ADD_TAXI_DESTINATION")
+	ScaleformMovieMethodAddParamInt(0) -- Index
+	ScaleformMovieMethodAddParamInt(settings.sprite) -- sprite
+	ScaleformMovieMethodAddParamInt(settings.colour.r) -- r
+	ScaleformMovieMethodAddParamInt(settings.colour.g) -- g
+	ScaleformMovieMethodAddParamInt(settings.colour.b) -- b
+	BeginTextCommandScaleformString("STRING")
+	AddTextComponentSubstringPlayerName(settings.label) -- label
+	EndTextCommandScaleformString()
+	BeginTextCommandScaleformString("STRING")
+	AddTextComponentSubstringPlayerName(settings.zone) -- 1st line
+	EndTextCommandScaleformString()
+	BeginTextCommandScaleformString("STRING")
+	AddTextComponentSubstringPlayerName(settings.street) -- 2nd line
+	EndTextCommandScaleformString()
+	EndScaleformMovieMethod()
+	BeginScaleformMovieMethod(movie, "SHOW_TAXI_DESTINATION") -- show index
+	EndScaleformMovieMethod()
+	BeginScaleformMovieMethod(movie, "HIGHLIGHT_DESTINATION")
+	ScaleformMovieMethodAddParamInt(0) -- highlight added index
+	EndScaleformMovieMethod()
+end
+
 local DestinationBlip = nil
 RegisterNetEvent("taxi:start", function(netId)
 	Wait(200)
@@ -292,6 +316,7 @@ RegisterNetEvent("taxi:start", function(netId)
 							if not DoesBlipExist(CurrentCustomerBlip) and not CustomerInVehicle then
 								CurrentCustomerBlip = AddBlipForEntity(CurrentNPC)
 								SetBlipAsFriendly(CurrentCustomerBlip, true)
+								SetBlipSprite(CurrentCustomerBlip, 480)
 								SetBlipColour(CurrentCustomerBlip, 2)
 								SetBlipCategory(CurrentCustomerBlip, 3)
 								SetBlipRoute(CurrentCustomerBlip, true)
@@ -331,27 +356,13 @@ RegisterNetEvent("taxi:start", function(netId)
 										local zone = GetLabelText(GetNameOfZone(BlipCoords))
 										local street = (GetStreetNameAtCoord(BlipCoords.x, BlipCoords.y, BlipCoords.z))
 										local streetname = GetStreetNameFromHashKey(street)
-										BeginScaleformMovieMethod(movie, "ADD_TAXI_DESTINATION")
-										ScaleformMovieMethodAddParamInt(0) -- Index
-										ScaleformMovieMethodAddParamInt(8) -- sprite
-										ScaleformMovieMethodAddParamInt(250) -- r
-										ScaleformMovieMethodAddParamInt(250) -- g
-										ScaleformMovieMethodAddParamInt(10) -- b
-										BeginTextCommandScaleformString("STRING")
-										AddTextComponentSubstringPlayerName("Drop Off") -- label
-										EndTextCommandScaleformString()
-										BeginTextCommandScaleformString("STRING")
-										AddTextComponentSubstringPlayerName(zone) -- 1st line
-										EndTextCommandScaleformString()
-										BeginTextCommandScaleformString("STRING")
-										AddTextComponentSubstringPlayerName(streetname) -- 2nd line
-										EndTextCommandScaleformString()
-										EndScaleformMovieMethod()
-										BeginScaleformMovieMethod(movie, "SHOW_TAXI_DESTINATION") -- show index
-										EndScaleformMovieMethod()
-										BeginScaleformMovieMethod(movie, "HIGHLIGHT_DESTINATION")
-										ScaleformMovieMethodAddParamInt(0) -- highlight added index
-										EndScaleformMovieMethod()
+										AddDestination(movie, {
+											sprite = 8,
+											colour = {r = 250, g = 250, b = 10},
+											label = "Drop Off",
+											zone = zone,
+											street = streetname
+										})
 									end
 									if IsEntityDead(CurrentNPC) then
 										ESX.ShowNotification("Customer Lost.", "error")
@@ -407,27 +418,13 @@ RegisterNetEvent("taxi:start", function(netId)
 								local zone = GetLabelText(GetNameOfZone(BlipCoords))
 								local street = (GetStreetNameAtCoord(BlipCoords.x, BlipCoords.y, BlipCoords.z))
 								local streetname = GetStreetNameFromHashKey(street)
-								BeginScaleformMovieMethod(movie, "ADD_TAXI_DESTINATION")
-								ScaleformMovieMethodAddParamInt(0) -- index
-								ScaleformMovieMethodAddParamInt(8) -- sprite
-								ScaleformMovieMethodAddParamInt(250) -- r
-								ScaleformMovieMethodAddParamInt(250) -- g
-								ScaleformMovieMethodAddParamInt(10) -- b
-								BeginTextCommandScaleformString("STRING")
-								AddTextComponentSubstringPlayerName("Drop Off") -- name
-								EndTextCommandScaleformString()
-								BeginTextCommandScaleformString("STRING")
-								AddTextComponentSubstringPlayerName(zone) -- 1st line
-								EndTextCommandScaleformString()
-								BeginTextCommandScaleformString("STRING")
-								AddTextComponentSubstringPlayerName(streetname) -- 2nd ine
-								EndTextCommandScaleformString()
-								EndScaleformMovieMethod()
-								BeginScaleformMovieMethod(movie, "SHOW_TAXI_DESTINATION") -- show the destinations
-								EndScaleformMovieMethod()
-								BeginScaleformMovieMethod(movie, "HIGHLIGHT_DESTINATION")
-								ScaleformMovieMethodAddParamInt(0) -- index
-								EndScaleformMovieMethod()
+								AddDestination(movie, {
+									sprite = 8,
+									colour = {r = 250, g = 250, b = 10},
+									label = "Drop Off",
+									zone = zone,
+									street = streetname
+								})
 								local pindex = GetPlayerFromPed(GetPedInVehicleSeat(job_veh, SeatIndex))
 								if pindex then
 									TriggerServerEvent("taxi:sync", pindex)
@@ -578,27 +575,13 @@ CreateThread(function()
 				local zone = GetLabelText(GetNameOfZone(BlipCoords))
 				local street = (GetStreetNameAtCoord(BlipCoords.x, BlipCoords.y, BlipCoords.z))
 				local streetname = GetStreetNameFromHashKey(street)
-				BeginScaleformMovieMethod(movie, "ADD_TAXI_DESTINATION")
-				ScaleformMovieMethodAddParamInt(0) -- index
-				ScaleformMovieMethodAddParamInt(8) -- sprite
-				ScaleformMovieMethodAddParamInt(250) -- r
-				ScaleformMovieMethodAddParamInt(250) -- g
-				ScaleformMovieMethodAddParamInt(10) -- b
-				BeginTextCommandScaleformString("STRING")
-				AddTextComponentSubstringPlayerName("Drop Off") -- label
-				EndTextCommandScaleformString()
-				BeginTextCommandScaleformString("STRING")
-				AddTextComponentSubstringPlayerName(zone) -- 1st line
-				EndTextCommandScaleformString()
-				BeginTextCommandScaleformString("STRING")
-				AddTextComponentSubstringPlayerName(streetname) -- 2nd line
-				EndTextCommandScaleformString()
-				EndScaleformMovieMethod()
-				BeginScaleformMovieMethod(movie, "SHOW_TAXI_DESTINATION") -- show the scaleform
-				EndScaleformMovieMethod()
-				BeginScaleformMovieMethod(movie, "HIGHLIGHT_DESTINATION")
-				ScaleformMovieMethodAddParamInt(0) -- highlight index
-				EndScaleformMovieMethod()
+				AddDestination(movie, {
+					sprite = 8,
+					colour = {r = 250, g = 250, b = 10},
+					label = "Drop Off",
+					zone = zone,
+					street = streetname
+				})
 			end
 			if SyncPrice then 
 				BeginScaleformMovieMethod(movie, "SET_TAXI_PRICE")
