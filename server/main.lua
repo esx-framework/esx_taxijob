@@ -7,7 +7,7 @@ RegisterNetEvent("taxi:startjob", function()
     if xPlayer.job.name ~= "taxi" then 
         return
     end
-    xPlayer.showNotification("Started Job!", "success")
+    xPlayer.showNotification(Translate("start_notify"), "success")
     ESX.OneSync.SpawnVehicle("taxi", Config.Positions.VehicleSpawn.xyz, Config.Positions.VehicleSpawn.w, Config.PlateText ~= "" and {plate = Config.PlateText} or {}, function(netId)
         local vehicle = NetworkGetEntityFromNetworkId(netId)
         while not DoesEntityExist(vehicle) do
@@ -44,7 +44,7 @@ RegisterNetEvent("taxi:endjob", function()
     if xPlayer.job.name ~= "taxi" then
         return
     end
-    xPlayer.showNotification("Vehicle Returned!", "success")
+    xPlayer.showNotification(Translate("return_notify"), "success")
 end)
 
 function IsValidRoute(route)
@@ -70,7 +70,7 @@ RegisterNetEvent("taxi:finish", function(price, route)
     end
     if #(GetEntityCoords(GetPlayerPed(source)) - route) <= 6.0 then
         xPlayer.addMoney(price)
-        xPlayer.showNotification(("Recieved ~g~$%s~s~ From Drop off!"):format(price), "success")
-        xPlayer.showNotification(("Use The ~b~Options Menu~s~ to start new mission."), "info")
+        xPlayer.showNotification(Translate("customer_dropoff", price), "success")
+        xPlayer.showNotification(Translate("new_mission_notify"), "info")
    end
 end)

@@ -15,7 +15,7 @@ CreateThread(function()
 	SetBlipColour(blip, 5)
 	SetBlipAsShortRange(blip, true)
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentSubstringPlayerName("Taxi Rank")
+	AddTextComponentSubstringPlayerName(Translate("blip"))
 	EndTextCommandSetBlipName(blip)
 	blips.Depo = blip
 	while true do
@@ -33,15 +33,15 @@ CreateThread(function()
 					if cloak_dist <= 2.0 then
 						if not DrawingTextUI then
 							DrawingTextUI = true
-							ESX.TextUI("[E] - ~g~Start~s~ Job", "info") 
+							ESX.TextUI(Translate("Start_textui"), "info") 
 						end
 						if IsControlJustPressed(0, 38) then
 							ESX.TriggerServerCallback("taxi:CanInteract", function(can)
 								if not can then 
-									return ESX.ShowNotification("You ~r~Cannot~s~ Perform This Action!")
+									return ESX.ShowNotification(Translate("Cannot_Perform"))
 								end
 								if not ESX.Game.IsSpawnPointClear(Config.Positions.VehicleSpawn.xyz, 5.0) then
-									return ESX.ShowNotification("Spawnpoint ~r~Blocked~s~.", "error")
+									return ESX.ShowNotification(Translate("blocked_spawn"), "error")
 								end
 								if Config.ForceWorkoutfit then
 									ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
@@ -74,12 +74,12 @@ CreateThread(function()
 						if del_dist <= 2.0 then
 							if not DrawingTextUI2 then
 								DrawingTextUI2 = true
-								ESX.TextUI("[E] - ~r~Return~s~ Vehicle", "info") 
+								ESX.TextUI(Translate("return_textui"), "info") 
 							end
 							if IsControlJustPressed(0, 38) then
 								ESX.TriggerServerCallback("taxi:CanInteract", function(can)
 									if not can then 
-										return ESX.ShowNotification("You ~r~Cannot~s~ Perform This Action!")
+										return ESX.ShowNotification(Translate("Cannot_Perform"))
 									end
 									if Config.ForceWorkoutfit then
 										ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
@@ -156,42 +156,42 @@ function OpenMenu()
 	local PlayerInTaxi, SeatIndex = IsPlayerINTaxi(job_veh)
 	local elements = {
 		{
-			title = "Taxi Options",
+			title = Translate("menu_title"),
 			icon = "fas fa-taxi",
 			unselectable = true
 		},
 		{
-			title = "Start NPC Mission",
+			title = Translate("menu_start"),
 			icon = "fas fa-phone",
 			value = "toggle_npc",
 			disabled = NPCMissions,
-			description = NPCMissions and "Currently Unavailable" or ""
+			description = Translate(NPCMissions and ("Unavailable") or "menu_start_desc")
 		},
 		{
-			title = "Reset Meter",
+			title = Translate("menu_reset"),
 			icon = "fas fa-tachometer-alt",
 			value = "reset_value",
 			disabled = NPCMissions,
-			description = NPCMissions and "Currently Unavailable" or "Reset Meter To 0"
+			description = Translate(NPCMissions and ("Unavailable") or "menu_reset_desc")
 		},
 		{
-			title = "Toggle Meter",
+			title = Translate("menu_toggle"),
 			icon = "fas fa-power-off",
 			value = "toggle_meter",
-			description = ("Currently: %s"):format(meterRunning and "Running" or "Paused")
+			description = ("Currently: %s"):format(Translate(meterRunning and "running" or "paused"))
 		},
 		{
-			title = "Bill Passenger",
+			title = Translate("menu_bill"),
 			icon = "fas fa-money-bill-alt",
 			value = "bill_player",
-			description = PlayerInTaxi and "Create a bill for the current passenger" or "Currently Unavailable",
+			description = Translate(PlayerInTaxi and "menu_bill_desc" or "Unavailable"),
 			disabled = not PlayerInTaxi
 		},
 		{
-			title = "Close",
+			title = Translate("menu_close"),
 			icon = "fas fa-times",
 			value = "close",
-			description = "Close Menu"
+			description = Translate("menu_close_desc")
 		}
 	}
 	ESX.OpenContext("right", elements, function(menu, element)
@@ -219,8 +219,8 @@ function OpenMenu()
 			if not PlayerInTaxi then return end
 			local pindex = GetPlayerFromPed(GetPedInVehicleSeat(job_veh, SeatIndex))
 			if pindex then 
-				TriggerServerEvent('esx_billing:sendBill', pindex, nil, 'Taxi Ride', playerprice)
-				ESX.ShowNotification("Sent Bill For ~g~£".. playerprice, "success")
+				TriggerServerEvent('esx_billing:sendBill', pindex, nil, Translate("bill_reason"), playerprice)
+				ESX.ShowNotification(Translate("bill_sent", playerprice), "success")
 			end
 			ESX.CloseContext()
 		else
@@ -230,7 +230,7 @@ function OpenMenu()
 	end)
 end
 
-ESX.RegisterInput("taxi:menu", "[Taxi] Open Menu", "keyboard", "f5", OpenMenu)
+ESX.RegisterInput("taxi:menu", Translate("keybind_desc"), "keyboard", "f5", OpenMenu)
 
 function AddDestination(movie, settings)
 	BeginScaleformMovieMethod(movie, "ADD_TAXI_DESTINATION")
@@ -318,7 +318,7 @@ RegisterNetEvent("taxi:start", function(netId)
 								local zone = GetLabelText(GetNameOfZone(CustomerCoords))
 								local street = (GetStreetNameAtCoord(CustomerCoords.x, CustomerCoords.y, CustomerCoords.z))
 								local streetname = GetStreetNameFromHashKey(street)
-								ESX.ShowNotification("New Customer!", "info")
+								ESX.ShowNotification(Translate("customer_new"), "info")
 								AddDestination(movie, {
 									sprite = 480,
 									colour = {r = 50, g = 250, b = 50},
@@ -366,7 +366,7 @@ RegisterNetEvent("taxi:start", function(netId)
 										})
 									end
 									if IsEntityDead(CurrentNPC) then
-										ESX.ShowNotification("Customer Lost.", "error")
+										ESX.ShowNotification(Translate("customer_lost"), "error")
 										RemoveBlip(DestinationBlip)
 										SetEntityAsNoLongerNeeded(CurrentNPC)
 										CurrentNPC = nil
@@ -498,7 +498,7 @@ function GetRandomWalkingNPC(Coords)
 	end
 
 	if #search == 0 then
-		ESX.ShowNotification("No Customers Available, Please try again.", "error")
+		ESX.ShowNotification(Translate("customer_unavailable"), "error")
 		NPCMissions = false
 		return nil
 	end
@@ -511,8 +511,8 @@ function GetRandomWalkingNPC(Coords)
 		npc = search[math.random(#search)]
 		Dist = #(GetEntityCoords(npc) - Coords)
 		tries += 1
-		if tries > 15 then
-			ESX.ShowNotification("No Customers Available, Please try again.", "error")
+		if tries > 25 then
+			ESX.ShowNotification(Translate("customer_unavailable"), "error")
 			NPCMissions = false
 			return nil
 		end
