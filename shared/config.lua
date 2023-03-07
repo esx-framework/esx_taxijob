@@ -15,6 +15,19 @@ Config.Marker = {
   Type    = 21, Rotate = true
 }
 
+Config.Blips = {
+  depo = {
+    sprite = 184,
+    colour = 5,
+    text = Translate("blip")
+  },
+  waypoint = {
+    sprite = 184,
+    colour = 5,
+    text = Translate("blip")
+  }
+}
+
 Config.Positions = {
   Cloakroom = vector3(894.88, -180.23, 74.5),
   VehicleSpawn = vector4(911.108, -177.867, 74.283, 225.0),
