@@ -1,53 +1,45 @@
 Locales['en'] = {
+
   -- cloakroom
-  ['cloakroom_menu'] = 'cloakroom',
-  ['cloakroom_prompt'] = 'press [E] to access the Cloakroom.',
-  ['wear_citizen'] = 'citizen wear',
-  ['wear_work'] = 'taxi wear',
+  ["Start_textui"] = "[E] - ~g~Start~s~ Job",
+  ["blocked_spawn"] = "Spawnpoint ~r~Blocked~s~.",
+  ["start_notify"] = "Started Job!",
+  
+  -- vehicle returning
+  ["return_textui"] = "[E] - ~r~Return~s~ Vehicle",
+  ["return_notify"] = "Vehicle ~g~Returned~s~, Goto the ~b~cloakroom~s~ to end the job.",
+  -- Job Menu overall
+  ["Unavailable"] = "Currently Unavailable",
+  ["running"] = "Running",
+  ["paused"] = "Paused",
 
-  -- garage
-  ['spawner_prompt'] = 'press [E] to access the Garage.',
-  ["vehicle_spawned"] = "Successfully Spawned A ~b~Taxi!",
-  ['store_veh'] = 'press [E] to store the vehicle',
-  ['spawn_veh'] = 'spawn vehicle',
-  ['spawnpoint_blocked'] = 'there is a vehicle blocking the spawnpoint!',
-  ['only_taxi'] = 'you can only store taxis.',
+  -- Job Menu Titles
+  ["menu_title"] = "Taxi Settings",
+  ["menu_start"] = "NPC Mission",
+  ["menu_reset"] = "Reset Meter",
+  ["menu_toggle"] = "Toggle Meter",
+  ["menu_bill"] = "Bill Passenger",
+  ["menu_close"] = "Close",
 
-  ['taking_service'] = 'taking service: Taxi/Uber',
-  ['full_service'] = 'full service: ',
-  ['amount_invalid'] = 'amount invalid',
-  ['press_to_open'] = 'press [E] to access the menu',
-  ['billing'] = 'billing',
-  ['billing_sent'] = 'the bill has been registered!',
-  ['invoice_amount'] = 'invoice amount',
-  ['no_players_near'] = 'no players nearby',
-  ['start_job'] = 'start / stop driving NPC jobs',
-  ['drive_search_pass'] = 'driving in search of passengers',
-  ['customer_found'] = 'you have found a customer, get closer to them',
-  ['client_unconcious'] = 'your client is ~r~unconscious, look for another one',
-  ['arrive_dest'] = 'you have arrived at your destination',
-  ['take_me_to_near'] = 'Take me to %s, near %s',
-  ['take_me_to'] = 'Take me to %s',
-  ['close_to_client'] = 'you are too far from the client, get close to them',
-  ['return_to_veh'] = 'please return to your vehicle to continue the mission',
-  ['must_in_taxi'] = 'you must be in a taxi to start the mission',
-  ['must_in_vehicle'] = 'you must be in a vehicle to begin the mission',
-  ['not_in_taxi'] = 'You left the taxi while on mission!',
-  ['have_earned'] = 'you have earned $%s',
-  ['comp_earned'] = '- your company has earned $%s\n- you have earned $%s',
-  ['deposit_stock'] = 'deposit Stock',
-  ['take_stock'] = 'take Stock',
-  ['boss_actions'] = 'boss Actions',
-  ['mission_complete'] = 'mission Completed',
-  ['quantity'] = 'quantity',
-  ['quantity_invalid'] = 'that is an invalid quantity!',
-  ['inventory'] = 'inventory',
-  ['taxi_client'] = 'taxi Client',
-  ['have_withdrawn'] = 'you have withdrawn x%s %s',
-  ['have_deposited'] = 'you have deposited x%s %s',
-  ['player_cannot_hold'] = 'you do ~r~not have enough free space in your inventory!',
-  ['blip_taxi'] = 'downtown Cab Co.',
-  ['phone_taxi'] = 'downtown Cab Co.',
-  ['taxi'] = 'taxi',
-  ['taxi_stock'] = 'taxi Stock'
+  -- Job Menu Descriptions
+  ["menu_start_desc"] = "Start a NPC mission.",
+  ["menu_reset_desc"] = "Reset Meter To 0.",
+  ["menu_bill_desc"] = "Send a bill to your current passenger.",
+  ["menu_close_desc"] = "Close Menu.",
+
+  -- billing
+  ["bill_sent"] = "Sent Bill For ~g~£%s",
+  ["bill_reason"] = "Taxi Ride",
+
+  -- Customers
+  ["customer_new"] = "New Customer Located!",
+  ["customer_lost"] = "You lost the customer.",
+  ["customer_unavailable"] = "No Customers Available, Please try again.",
+  ["customer_dropoff"] = "Recieved ~g~$%s~s~ From Drop off!"
+
+  -- other
+  ["blip"] = "Taxi Rank",
+  ["Cannot_Perform"] = "You ~r~Cannot~s~ Perform This Action!",
+  ["keybind_desc"] = "[Taxi] Open Menu",
+  ["new_mission_notify"] = "Use The ~b~Options Menu~s~ to start new mission."
 }
