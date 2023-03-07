@@ -35,7 +35,7 @@ Locales['en'] = {
   ["customer_new"] = "New Customer Located!",
   ["customer_lost"] = "You lost the customer.",
   ["customer_unavailable"] = "No Customers Available, Please try again.",
-  ["customer_dropoff"] = "Recieved ~g~$%s~s~ From Drop off!"
+  ["customer_dropoff"] = "Recieved ~g~$%s~s~ From Drop off!",
 
   -- other
   ["blip"] = "Taxi Rank",
