@@ -121,6 +121,7 @@ function OpenCloakroom()
         CurrentAction = 'cloakroom'
         CurrentActionMsg = TranslateCap('cloakroom_prompt')
         CurrentActionData = {}
+        ESX.TextUI(CurrentActionMsg)
     end)
 end
 
@@ -156,6 +157,7 @@ function OpenVehicleSpawnerMenu()
                 CurrentAction = 'vehicle_spawner'
                 CurrentActionMsg = TranslateCap('spawner_prompt')
                 CurrentActionData = {}
+                ESX.TextUI(CurrentActionMsg)
             end)
         end, 'taxi')
     else -- not society vehicles
@@ -172,6 +174,7 @@ function OpenVehicleSpawnerMenu()
             CurrentAction = 'vehicle_spawner'
             CurrentActionMsg = TranslateCap('spawner_prompt')
             CurrentActionData = {}
+            ESX.TextUI(CurrentActionMsg)
         end)
     end
 end
@@ -228,6 +231,7 @@ function OpenTaxiActionsMenu()
         CurrentAction = 'taxi_actions_menu'
         CurrentActionMsg = TranslateCap('press_to_open')
         CurrentActionData = {}
+        ESX.TextUI(CurrentActionMsg)
     end)
 end
 
@@ -349,6 +353,7 @@ function OpenGetStocksMenu()
         CurrentAction = 'taxi_actions_menu'
         CurrentActionMsg = TranslateCap('press_to_open')
         CurrentActionData = {}
+        ESX.TextUI(CurrentActionMsg)
     end)    
 end
 
@@ -397,6 +402,7 @@ function OpenPutStocksMenu()
         CurrentAction = 'taxi_actions_menu'
         CurrentActionMsg = TranslateCap('press_to_open')
         CurrentActionData = {}
+        ESX.TextUI(CurrentActionMsg)
     end)  
 end
 
@@ -426,11 +432,13 @@ AddEventHandler('esx_taxijob:hasEnteredMarker', function(zone)
         CurrentActionMsg = TranslateCap('cloakroom_prompt')
         CurrentActionData = {}
     end
+    ESX.TextUI(CurrentActionMsg)
 end)
 
 AddEventHandler('esx_taxijob:hasExitedMarker', function(zone)
     ESX.CloseContext()
     CurrentAction = nil
+    ESX.HideUI()
 end)
 
 RegisterNetEvent('esx_phone:loaded')
@@ -683,7 +691,6 @@ CreateThread(function()
         local sleep = 1500
         if CurrentAction and not ESX.PlayerData.dead then
             sleep = 0
-            ESX.ShowHelpNotification(CurrentActionMsg)
 
             if IsControlJustReleased(0, 38) and ESX.PlayerData.job and ESX.PlayerData.job.name == 'taxi' then
                 if CurrentAction == 'taxi_actions_menu' then
@@ -697,6 +704,7 @@ CreateThread(function()
                 end
 
                 CurrentAction = nil
+                ESX.HideUI()
             end
         end
         Wait(sleep)
