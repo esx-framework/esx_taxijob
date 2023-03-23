@@ -1,4 +1,4 @@
-Config = {}
+local Config = {}
 
 Config.PricePerUnit          = 2 -- Price Per Ingame unit traveled (For NPC Missions) (default: 2)
 Config.DistancePerDollar     = 25 -- In-game Units traveled per Dollar (For Player Missions) (default: 25)
@@ -128,3 +128,6 @@ Config.DropOffLocations = {
     vector3(-1160.6, 744.4, 154.6),
     vector3(-798.1, 831.7, 204.4)
   }
+
+-- don't touch
+GlobalState.taxijob.Config = Config
