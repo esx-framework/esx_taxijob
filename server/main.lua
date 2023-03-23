@@ -1,13 +1,15 @@
+local Config = GlobalState.taxijob.Config
+
 RegisterNetEvent("taxi:startjob", function() 
     local source = source
+
     local xPlayer = ESX.GetPlayerFromId(source)
-    if not xPlayer then 
-        return
-    end
-    if xPlayer.job.name ~= "taxi" then 
-        return
-    end
+    if not xPlayer then return end
+
+    if Player(source).state.job.name ~= "taxi" then return end
+
     xPlayer.showNotification(Translate("start_notify"), "success")
+
     ESX.OneSync.SpawnVehicle("taxi", Config.Positions.VehicleSpawn.xyz, Config.Positions.VehicleSpawn.w, Config.PlateText ~= "" and {plate = Config.PlateText} or {}, function(netId)
         local vehicle = NetworkGetEntityFromNetworkId(netId)
         while not DoesEntityExist(vehicle) do
@@ -27,23 +29,17 @@ RegisterNetEvent("taxi:sync", function(player)
    TriggerClientEvent("taxi:c:sync", player)
 end)
 
-if Config.ShowPriceToPassengers then
-    RegisterNetEvent("taxi:syncprice", function(player, price)
-        TriggerClientEvent("taxi:c:syncprice", player, price)
-    end)
-end
-
-ESX.RegisterServerCallback("taxi:CanInteract", function(src, cb)
-    local xPlayer = ESX.GetPlayerFromId(src)
-    cb(xPlayer.job.name == "taxi")
+RegisterNetEvent("taxi:syncprice", function(player, price)
+    if not Config.ShowPriceToPassengers then return end
+    TriggerClientEvent("taxi:c:syncprice", player, price)
 end)
 
 RegisterNetEvent("taxi:endjob", function()
     local source = source
     local xPlayer = ESX.GetPlayerFromId(source)
-    if xPlayer.job.name ~= "taxi" then
-        return
-    end
+    if not xPlayer then return end
+    if Player(source).state.job.name ~= "taxi" then return end
+
     xPlayer.showNotification(Translate("return_notify"), "success")
 end)
 
@@ -59,18 +55,13 @@ end
 RegisterNetEvent("taxi:finish", function(price, route)
     local source = source
     local xPlayer = ESX.GetPlayerFromId(source)
-    if not xPlayer then 
-        return
-    end
-    if xPlayer.job.name ~= "taxi" then 
-        return
-    end
-    if not IsValidRoute(route) then 
-        return 
-    end
+    if not xPlayer then return end
+    if Player(source).state.job.name ~= "taxi" then return end
+    if not IsValidRoute(route) then return end
+
     if #(GetEntityCoords(GetPlayerPed(source)) - route) <= 6.0 then
         xPlayer.addMoney(price)
         xPlayer.showNotification(Translate("customer_dropoff", price), "success")
         xPlayer.showNotification(Translate("new_mission_notify"), "info")
-   end
+    end
 end)
