@@ -19,7 +19,7 @@ function taxiJob:initialize()
         local xPlayer = ESX.GetPlayerFromId(source)
         if not xPlayer then return end
     
-        if Player(source).state.job.name ~= "taxi" then return end
+        if xPlayer.job.name ~= "taxi" then return end
     
         xPlayer.showNotification(TranslateCap("start_notify"), "success")
     
@@ -62,9 +62,9 @@ function taxiJob:initialize()
         local xPlayer = ESX.GetPlayerFromId(source)
         if not xPlayer then return end
         if xPlayer.job.name ~= "taxi" then return end
-        if not self.IsValidRoute(route) then return end
+        if not self:IsValidRoute(route) then return end
 
-        if #(GetEntityCoords(GetPlayerPed(source)) - route) > 6.0 then return end
+        if #(xPlayer.getCoords() - route) > 6.0 then return end
     
         xPlayer.addMoney(price)
         xPlayer.showNotification(TranslateCap("customer_dropoff", price), "success")
