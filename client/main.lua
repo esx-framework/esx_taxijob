@@ -51,30 +51,27 @@ end
 
 function taxiJob:loadMarkers()
 	Wait(1000)
-	local DrawDist = Config.DrawDistance
+	local drawDist = Config.DrawDistance
 	local positions = Config.Positions
 	local forceWorkOutfit = Config.ForceWorkoutfit
-	local DrawingTextUI = false
+	local drawingTextUI = false
 	while true do
-		local Sleep = 1500
+		local sleep = 1500
 		if LocalPlayer.state.job.name ~= 'taxi' then break end
 		local ped = ESX.PlayerData.ped
-		local PlayerCoords = GetEntityCoords(ped)
+		local playerCoords = GetEntityCoords(ped)
 
 		-- Cloakroom
-		local cloak_dist = #(PlayerCoords - positions.Cloakroom)
-		if cloak_dist <= DrawDist then
-			Sleep = 0
+		local cloakroomDistance = #(playerCoords - positions.Cloakroom)
+		if cloakroomDistance <= drawDist then
+			sleep = 0
 			self:createMarker(positions.Cloakroom)
-			if cloak_dist <= 2.0 then
-				if not DrawingTextUI then
-					DrawingTextUI = true
+			if cloakroomDistance <= 2.0 then
+				if not drawingTextUI then
+					drawingTextUI = true
 					ESX.TextUI(TranslateCap("Start_textui"), "info")
 				end
 				self:checkKeyPress(function()
-					if LocalPlayer.state.job.name ~= 'taxi' then
-						return ESX.ShowNotification(TranslateCap("Cannot_Perform"))
-					end
 					if not ESX.Game.IsSpawnPointClear(positions.VehicleSpawn.xyz, 5.0) then
 						return ESX.ShowNotification(TranslateCap("blocked_spawn"), "error")
 					end
@@ -89,30 +86,27 @@ function taxiJob:loadMarkers()
 					end
 					TriggerServerEvent("taxi:startjob")
 					ESX.HideUI()
-					DrawingTextUI = false
+					drawingTextUI = false
 				end)
 			else
-				if DrawingTextUI then
+				if drawingTextUI then
 					ESX.HideUI()
-					DrawingTextUI = false
+					drawingTextUI = false
 				end
 			end
 		end
 
 		if self.jobVehicle and DoesEntityExist(self.jobVehicle) then
-			local del_dist = #(PlayerCoords - positions.VehicleSpawn.xyz)
-			if del_dist <= DrawDist then
-				Sleep = 0
+			local del_dist = #(playerCoords - positions.VehicleSpawn.xyz)
+			if del_dist <= drawDist then
+				sleep = 0
 				self:createMarker(positions.VehicleSpawn.xyz)
 				if del_dist <= 2.0 then
-					if not DrawingTextUI then
-						DrawingTextUI = true
+					if not drawingTextUI then
+						drawingTextUI = true
 						ESX.TextUI(TranslateCap("return_textui"), "info")
 					end
 					self:checkKeyPress(function()
-						if LocalPlayer.state.job.name ~= 'taxi' then
-							return ESX.ShowNotification(TranslateCap("Cannot_Perform"))
-						end
 						if forceWorkOutfit then
 							ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
 								TriggerEvent('skinchanger:loadSkin', skin)
@@ -125,17 +119,17 @@ function taxiJob:loadMarkers()
 						DeleteEntity(self.jobVehicle)
 						TriggerServerEvent("taxi:endjob")
 						ESX.HideUI()
-						DrawingTextUI = false
+						drawingTextUI = false
 					end)
 				else
-					if DrawingTextUI then
+					if drawingTextUI then
 						ESX.HideUI()
-						DrawingTextUI = false
+						drawingTextUI = false
 					end
 				end
 			end
 		end
-		Wait(Sleep)
+		Wait(sleep)
 	end
 end
 
@@ -221,7 +215,7 @@ end
 function taxiJob:OpenMenu()
 	if self.inTaxiAsPassenger then return end
 	if LocalPlayer.state.job.name ~= "taxi" then return end
-	local playerInTaxi, seatIndex = IsPlayerINTaxi(self.jobVehicle)
+	local playerInTaxi, seatIndex = self:isPlayerInTaxi(self.jobVehicle)
 	local elements = {
 		{
 			title = TranslateCap("menu_title"),
@@ -608,11 +602,10 @@ end
 
 function taxiJob:initialize()
 	self:createBlip(Config.Position.Cloakroom, 'depo')
-	self:loadMarkers()
 
-	AddEventHandler('esx:setJob', function()
+	if LocalPlayer.state.job.name == 'taxi' then
 		self:loadMarkers()
-	end)
+	end
 
 	RegisterNetEvent("taxi:start", function(netId)
 		self.jobVehicle = NetworkGetEntityFromNetworkId(netId)
@@ -628,10 +621,11 @@ function taxiJob:initialize()
 			RemoveBlip(v)
 		end
 	
-		if not self.currentNPC then return end
-		self.inNpcMission = false
-		SetPedAsNoLongerNeeded(self.currentNPC)
-		self.currentNPC = nil
+		if self.currentNPC then
+			self.inNpcMission = false
+			SetPedAsNoLongerNeeded(self.currentNPC)
+			self.currentNPC = nil
+		end
 	end)
 
 	RegisterNetEvent("taxi:c:sync", function()
@@ -641,6 +635,12 @@ function taxiJob:initialize()
 	
 	RegisterNetEvent("taxi:c:self.syncPrice", function(price)
 		self.self.syncPrice = price
+	end)
+
+	AddEventHandler('esx:setJob', function(job)
+		if job ~= 'taxi' then
+			self:loadMarkers()
+		end
 	end)
 end
 
