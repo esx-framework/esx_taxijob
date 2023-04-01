@@ -1,4 +1,4 @@
-Locales['sc'] = {
+Locales['zh-cn'] = {
   -- cloakroom
   ['cloakroom_menu'] = '更衣室',
   ['cloakroom_prompt'] = '键下 [E] 访问更衣室',
