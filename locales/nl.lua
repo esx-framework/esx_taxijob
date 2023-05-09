@@ -49,5 +49,10 @@ Locales['nl'] = {
   ['blip_taxi'] = 'downtown Cab Co.',
   ['phone_taxi'] = 'downtown Cab Co.',
   ['taxi'] = 'taxi',
-  ['taxi_stock'] = 'taxi voorraad'
+  ['taxi_stock'] = 'taxi voorraad',
+  ['amount'] = "Amount", --not translated
+  ['bill_amount'] = "Amount to bill..", --not translated
+  ['deposit_amount'] = "Amount to deposit..", --not translated
+  ['withdraw_amount'] = "Amount to withdraw..", --not translated
+  ['confirm'] = "Confirm", --not translated
 }

@@ -48,5 +48,10 @@ Locales['fi'] = {
   ['blip_taxi'] = 'Taksi',
   ['phone_taxi'] = 'Taksi',
   ['taxi'] = 'Taksi',
-  ['taxi_stock'] = 'Taksi varasto'
+  ['taxi_stock'] = 'Taksi varasto',
+  ['amount'] = "Amount", --not translated
+  ['bill_amount'] = "Amount to bill..", --not translated
+  ['deposit_amount'] = "Amount to deposit..", --not translated
+  ['withdraw_amount'] = "Amount to withdraw..", --not translated
+  ['confirm'] = "Confirm", --not translated
 }
