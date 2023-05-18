@@ -49,5 +49,10 @@ Locales['zh-cn'] = {
   ['blip_taxi'] = '滴滴司机',
   ['phone_taxi'] = '滴滴司机',
   ['taxi'] = '滴滴',
-  ['taxi_stock'] = '滴滴物品'
+  ['taxi_stock'] = '滴滴物品',
+  ['amount'] = "Amount", --not translated
+  ['bill_amount'] = "Amount to bill..", --not translated
+  ['deposit_amount'] = "Amount to deposit..", --not translated
+  ['withdraw_amount'] = "Amount to withdraw..", --not translated
+  ['confirm'] = "Confirm", --not translated
 }

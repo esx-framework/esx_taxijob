@@ -242,8 +242,8 @@ function OpenMobileTaxiActionsMenu()
         if element.value == "billing" then
             local elements2 = {
                 {unselectable = true, icon = "fas fa-taxi", title = element.title},
-                {title = "Amount", input = true, inputType = "number", inputMin = 1, inputMax = 250000, inputPlaceholder = "Amount to bill.."},
-                {icon = "fas fa-check-double", title = "Confirm", value = "confirm"}
+                {title = TranslateCap('amount'), input = true, inputType = "number", inputMin = 1, inputMax = 250000, inputPlaceholder = TranslateCap('bill_amount')},
+                {icon = "fas fa-check-double", title = TranslateCap('confirm'), value = "confirm"}
             }
 
             ESX.OpenContext("right", elements2, function(menu2,element2)
@@ -327,8 +327,8 @@ function OpenGetStocksMenu()
             local itemName = element.value
             local elements2 = {
                 {unselectable = true, icon = "fas fa-box", title = element.title},
-                {title = "Amount", input = true, inputType = "number", inputMin = 1, inputMax = 100, inputPlaceholder = "Amount to withdraw.."},
-                {icon = "fas fa-check-double", title = "Confirm", value = "confirm"}
+                {title = TranslateCap('amount'), input = true, inputType = "number", inputMin = 1, inputMax = 100, inputPlaceholder = TranslateCap('withdraw_amount')},
+                {icon = "fas fa-check-double", title = TranslateCap('confirm'), value = "confirm"}
             }
 
             ESX.OpenContext("right", elements2, function(menu2,element2)
@@ -375,7 +375,7 @@ function OpenPutStocksMenu()
 
             local elements2 = {
                 {unselectable = true, icon = "fas fa-box", title = element.title},
-                {title = "Amount", input = true, inputType = "number", inputMin = 1, inputMax = 100, inputPlaceholder = "Amount to deposit.."},
+                {title = TranslateCap('amount'), input = true, inputType = "number", inputMin = 1, inputMax = 100, inputPlaceholder = TranslateCap('deposit_amount')},
                 {icon = "fas fa-check-double", title = "Confirm", value = "confirm"}
             }
 

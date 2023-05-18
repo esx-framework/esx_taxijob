@@ -53,5 +53,10 @@ Locales['it'] = {
     ['phone_taxi' ] =  ' downtown Cab Co.',
     ['taxi' ] =  'taxi',
     ['taxi_stock'] =  'deposito dei taxi',
-    ['menu_return'] =  'Ritorno'
+    ['menu_return'] =  'Ritorno',
+    ['amount'] = "Amount", --not translated
+    ['bill_amount'] = "Amount to bill..", --not translated
+    ['deposit_amount'] = "Amount to deposit..", --not translated
+    ['withdraw_amount'] = "Amount to withdraw..", --not translated
+    ['confirm'] = "Confirm", --not translated
   }

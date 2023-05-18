@@ -49,5 +49,10 @@ Locales['en'] = {
   ['blip_taxi'] = 'downtown Cab Co.',
   ['phone_taxi'] = 'downtown Cab Co.',
   ['taxi'] = 'taxi',
-  ['taxi_stock'] = 'taxi Stock'
+  ['taxi_stock'] = 'taxi Stock',
+  ['amount'] = "Amount",
+  ['bill_amount'] = "Amount to bill..",
+  ['deposit_amount'] = "Amount to deposit..",
+  ['withdraw_amount'] = "Amount to withdraw..",
+  ['confirm'] = "Confirm",
 }

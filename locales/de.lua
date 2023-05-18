@@ -49,5 +49,10 @@ Locales['en'] = {
   ['blip_taxi'] = 'Taxi',
   ['phone_taxi'] = 'Taxi',
   ['taxi'] = 'Taxi',
-  ['taxi_stock'] = 'Lager'
+  ['taxi_stock'] = 'Lager',
+  ['amount'] = "Amount", --not translated
+  ['bill_amount'] = "Amount to bill..", --not translated
+  ['deposit_amount'] = "Amount to deposit..", --not translated
+  ['withdraw_amount'] = "Amount to withdraw..", --not translated
+  ['confirm'] = "Confirm", --not translated
 }
