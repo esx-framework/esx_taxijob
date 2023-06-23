@@ -54,9 +54,9 @@ Locales['it'] = {
     ['taxi' ] =  'taxi',
     ['taxi_stock'] =  'deposito dei taxi',
     ['menu_return'] =  'Indietro',
-    ['amount'] = "Quantità", --not translated
-    ['bill_amount'] = "Quantità da fatturare..", --not translated
-    ['deposit_amount'] = "Quantità da depositare..", --not translated
-    ['withdraw_amount'] = "Quantità da prelevare..", --not translated
-    ['confirm'] = "Conferma", --not translated
+    ['amount'] = "Quantità",
+    ['bill_amount'] = "Quantità da fatturare..",
+    ['deposit_amount'] = "Quantità da depositare..",
+    ['withdraw_amount'] = "Quantità da prelevare..",
+    ['confirm'] = "Conferma",
   }
