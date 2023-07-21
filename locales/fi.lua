@@ -11,6 +11,7 @@ Locales['fi'] = {
   ['spawn_veh'] = 'Luo ajoneuvo',
   ['spawnpoint_blocked'] = 'Jokin ajoneuvo estää ajoneuvon luomisen!',
   ['only_taxi'] = 'Voit vain tallettaa takseja',
+  ["vehicle_spawned"] = "%s onnistuneesti pysäköity",
 
   ['taking_service'] = 'Aloitetaan työ: Taxi/Uber',
   ['full_service'] = 'Täysi palvelu: ',

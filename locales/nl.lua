@@ -7,7 +7,7 @@ Locales['nl'] = {
 
   -- garage
   ['spawner_prompt'] = 'Druk op [E] om de Garage te gebruiken.',
-  ["vehicle_spawned"] = "Successfully Spawned A ~b~Taxi!",
+  ["vehicle_spawned"] = "Successfully Spawned A ~b~%s!",
   ['store_veh'] = 'Druk op [E] om het voertuig weg te zetten.',
   ['spawn_veh'] = 'pak voertuig',
   ['spawnpoint_blocked'] = 'Er is een voertuig dat het spawnpoint blokkeerd!',

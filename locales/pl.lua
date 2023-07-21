@@ -11,6 +11,7 @@ Locales['pl'] = {
   ['spawn_veh'] = 'sprowadź pojazd',
   ['spawnpoint_blocked'] = 'jakiś pojazd blokuje wyjazd z garażu!',
   ['only_taxi'] = 'możesz przechowywać tylko taksówki.',
+  ['vehicle_spawned'] = '%s pomyślnie zaparkowany!',
 
   ['taking_service'] = 'przyjmowanie usługi: Taxi/Uber',
   ['full_service'] = 'pełny serwis: ',

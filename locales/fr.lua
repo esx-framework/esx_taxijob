@@ -11,6 +11,7 @@ Locales['fr'] = {
   ['spawn_veh'] = 'sortir véhicule',
   ['spawnpoint_blocked'] = 'un véhicule bloque la sortie!!',
   ['only_taxi'] = 'vous ne pouvez ranger que les taxi',
+  ["vehicle_spawned"] = "Vous venez de sortir un ~b~%s",
 
   ['taking_service'] = 'prise de service : Taxi/Uber',
   ['full_service'] = 'service complet : ',

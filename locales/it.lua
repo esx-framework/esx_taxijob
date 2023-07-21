@@ -7,7 +7,7 @@ Locales['it'] = {
   
     -- garage
     ['spawner_prompt'] = 'premi [E] per accedere al garage.',
-    ["vehicle_spawned"] = "generato con successo un ~b~Taxi!",
+    ["vehicle_spawned"] = "generato con successo un ~b~%s!",
     ['store_veh'] = 'premi [E] per depositare il veicolo',
     ['spawn_veh'] = 'genera veicolo',
     ['spawnpoint_blocked'] = 'un veicolo blocca lo spawnpoint!',

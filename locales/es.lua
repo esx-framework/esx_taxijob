@@ -13,6 +13,7 @@ Locales['es'] = {
   ['spawn_veh'] = 'Vehículo de generación',
   ['spawnpoint_blocked'] = '¡Hay un vehículo bloqueando el punto de generación!',
   ['only_taxi'] = 'Solo puede almacenar taxis.',
+  ["vehicle_spawned"] = "%s aparcado correctamente ",
 
   ['taking_service'] = 'Tomando servicio: Taxi / Uber',
   ['full_service'] = 'Servicio completo: ',
