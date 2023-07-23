@@ -12,6 +12,8 @@ Locales['fi'] = {
   ['spawnpoint_blocked'] = 'Jokin ajoneuvo estää ajoneuvon luomisen!',
   ['only_taxi'] = 'Voit vain tallettaa takseja',
   ["vehicle_spawned"] = "%s onnistuneesti pysäköity",
+  ['empty_authorized_vehicles_table'] = "Authorized vehicles table is empty in config.lua",
+  ['unknow_model'] = "Can't spawn this model because unknow",
 
   ['taking_service'] = 'Aloitetaan työ: Taxi/Uber',
   ['full_service'] = 'Täysi palvelu: ',

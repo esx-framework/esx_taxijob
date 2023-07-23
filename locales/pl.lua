@@ -12,6 +12,8 @@ Locales['pl'] = {
   ['spawnpoint_blocked'] = 'jakiś pojazd blokuje wyjazd z garażu!',
   ['only_taxi'] = 'możesz przechowywać tylko taksówki.',
   ['vehicle_spawned'] = '%s pomyślnie zaparkowany!',
+  ['empty_authorized_vehicles_table'] = "Authorized vehicles table is empty in config.lua",
+  ['unknow_model'] = "Can't spawn this model because unknow",
 
   ['taking_service'] = 'przyjmowanie usługi: Taxi/Uber',
   ['full_service'] = 'pełny serwis: ',

@@ -12,6 +12,8 @@ Locales['zh-cn'] = {
   ['spawn_veh'] = '生成载具',
   ['spawnpoint_blocked'] = '错误！当前一辆车挡住了生成点!',
   ['only_taxi'] = '当前车库无法停放除计程车的其他车辆！',
+  ['empty_authorized_vehicles_table'] = "Authorized vehicles table is empty in config.lua",
+  ['unknow_model'] = "Can't spawn this model because unknow",
 
   ['taking_service'] = '公共服务:滴滴司机',
   ['full_service'] = '公共服务:',

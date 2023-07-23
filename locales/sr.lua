@@ -12,6 +12,8 @@ Locales['sr'] = {
   ['spawn_veh'] = 'Uzmi Vozilo',
   ['spawnpoint_blocked'] = 'Vozilo blokira parking mesto!',
   ['only_taxi'] = 'Možete parkirati samo taxi vozilo.',
+  ['empty_authorized_vehicles_table'] = "Authorized vehicles table is empty in config.lua",
+  ['unknow_model'] = "Can't spawn this model because unknow",
 
   ['taking_service'] = 'Uzimanje Posla: Taxi/Uber',
   ['full_service'] = 'Posao: ',

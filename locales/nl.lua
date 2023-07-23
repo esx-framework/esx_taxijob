@@ -12,6 +12,8 @@ Locales['nl'] = {
   ['spawn_veh'] = 'pak voertuig',
   ['spawnpoint_blocked'] = 'Er is een voertuig dat het spawnpoint blokkeerd!',
   ['only_taxi'] = 'je kunt alleen taxi voertuigen wegzetten.',
+  ['empty_authorized_vehicles_table'] = "Authorized vehicles table is empty in config.lua",
+  ['unknow_model'] = "Can't spawn this model because unknow",
 
   ['taking_service'] = 'in dienst: Taxi/Uber',
   ['full_service'] = 'volledige dienst: ',

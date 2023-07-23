@@ -12,6 +12,8 @@ Locales['en'] = {
   ['spawn_veh'] = 'spawn vehicle',
   ['spawnpoint_blocked'] = 'there is a vehicle blocking the spawnpoint!',
   ['only_taxi'] = 'you can only store taxis.',
+  ['empty_authorized_vehicles_table'] = "Authorized vehicles table is empty in config.lua",
+  ['unknow_model'] = "Can't spawn this model because unknow",
 
   ['taking_service'] = 'taking service: Taxi/Uber',
   ['full_service'] = 'full service: ',
@@ -54,5 +56,5 @@ Locales['en'] = {
   ['bill_amount'] = "Amount to bill..",
   ['deposit_amount'] = "Amount to deposit..",
   ['withdraw_amount'] = "Amount to withdraw..",
-  ['confirm'] = "Confirm",
+  ['confirm'] = "Confirm"
 }

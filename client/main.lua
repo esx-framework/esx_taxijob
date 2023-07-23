@@ -159,14 +159,22 @@ function OpenVehicleSpawnerMenu()
             end)
         end, 'taxi')
     else -- not society vehicles
+        if #Config.AuthorizedVehicles == 0 then
+            ESX.ShowNotification(TranslateCap('empty_authorized_vehicles_table'), "error")
+            return
+        end
         ESX.OpenContext("right", Config.AuthorizedVehicles, function(menu,element)
+            if not element.model or string.len(element.model) == 0 then
+                ESX.ShowNotification(TranslateCap('unknow_model'), "error")
+                return
+            end
             if not ESX.Game.IsSpawnPointClear(Config.Zones.VehicleSpawnPoint.Pos, 5.0) then
                 ESX.ShowNotification(TranslateCap('spawnpoint_blocked'))
                 return
             end
             ESX.TriggerServerCallback("esx_taxijob:SpawnVehicle", function()
                 ESX.ShowNotification(TranslateCap('vehicle_spawned', element.title), "success")
-            end, element.model or "taxi", {plate = "TAXI JOB"})
+            end, element.model, {plate = "TAXI JOB"})
             ESX.CloseContext()
         end, function(menu)
             CurrentAction = 'vehicle_spawner'
@@ -301,7 +309,7 @@ function IsInAuthorizedVehicle()
     local vehModel = GetEntityModel(GetVehiclePedIsIn(playerPed, false))
 
     for i = 1, #Config.AuthorizedVehicles, 1 do
-        if vehModel == joaat(Config.AuthorizedVehicles[i].model) then
+        if Config.AuthorizedVehicles[i].model and vehModel == joaat(Config.AuthorizedVehicles[i].model) then
             return true
         end
     end

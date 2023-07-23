@@ -11,6 +11,8 @@ Locales['hu'] = {
   ['spawn_veh'] = 'autó lehívás',
   ['spawnpoint_blocked'] = 'egy autó blokkolja a lehívási helyet!',
   ['only_taxi'] = 'Csak taxikat tárolhatsz.',
+  ['empty_authorized_vehicles_table'] = "Authorized vehicles table is empty in config.lua",
+  ['unknow_model'] = "Can't spawn this model because unknow",
 
   ['taking_service'] = 'szolgálat vállalás: Taxi/Uber',
   ['full_service'] = 'teljes szolgálat: ',
