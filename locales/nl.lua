@@ -7,11 +7,13 @@ Locales['nl'] = {
 
   -- garage
   ['spawner_prompt'] = 'Druk op [E] om de Garage te gebruiken.',
-  ["vehicle_spawned"] = "Successfully Spawned A ~b~Taxi!",
+  ["vehicle_spawned"] = "Successfully Spawned A ~b~%s!",
   ['store_veh'] = 'Druk op [E] om het voertuig weg te zetten.',
   ['spawn_veh'] = 'pak voertuig',
   ['spawnpoint_blocked'] = 'Er is een voertuig dat het spawnpoint blokkeerd!',
   ['only_taxi'] = 'je kunt alleen taxi voertuigen wegzetten.',
+  ['empty_authorized_vehicles_table'] = "Authorized vehicles table is empty in config.lua",
+  ['unknow_model'] = "Can't spawn this model because unknow",
 
   ['taking_service'] = 'in dienst: Taxi/Uber',
   ['full_service'] = 'volledige dienst: ',

@@ -11,6 +11,8 @@ Locales['hu'] = {
   ['spawn_veh'] = 'autó lehívás',
   ['spawnpoint_blocked'] = 'egy autó blokkolja a lehívási helyet!',
   ['only_taxi'] = 'Csak taxikat tárolhatsz.',
+  ['empty_authorized_vehicles_table'] = "Authorized vehicles table is empty in config.lua",
+  ['unknow_model'] = "Can't spawn this model because unknow",
 
   ['taking_service'] = 'szolgálat vállalás: Taxi/Uber',
   ['full_service'] = 'teljes szolgálat: ',
@@ -48,7 +50,7 @@ Locales['hu'] = {
   ['phone_taxi'] = 'Taxi Hívás',
   ['taxi'] = 'taxi',
   ['taxi_stock'] = 'taxi tároló',
-  ['vehicle_spawned'] = 'Sikeresen lehívtad: ~b~Taxi!',
+  ['vehicle_spawned'] = 'Sikeresen lehívtad: ~b~%s!',
   ['amount'] = "Mennyiség",
   ['bill_amount'] = "Nyugta értéke..",
   ['deposit_amount'] = "mennyiség..",

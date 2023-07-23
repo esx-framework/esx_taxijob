@@ -7,11 +7,13 @@ Locales['sr'] = {
 
   -- garage
   ['spawner_prompt'] = 'Pritisni [E] da pristupiš garaži.',
-  ["vehicle_spawned"] = "Uspešno uzeto ~b~Taxi vozilo!",
+  ["vehicle_spawned"] = "Uspešno uzeto ~b~%s vozilo!",
   ['store_veh'] = 'Pritisni [E] da parkiraš vozilo',
   ['spawn_veh'] = 'Uzmi Vozilo',
   ['spawnpoint_blocked'] = 'Vozilo blokira parking mesto!',
   ['only_taxi'] = 'Možete parkirati samo taxi vozilo.',
+  ['empty_authorized_vehicles_table'] = "Authorized vehicles table is empty in config.lua",
+  ['unknow_model'] = "Can't spawn this model because unknow",
 
   ['taking_service'] = 'Uzimanje Posla: Taxi/Uber',
   ['full_service'] = 'Posao: ',
