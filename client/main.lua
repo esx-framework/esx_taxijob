@@ -166,7 +166,7 @@ function OpenVehicleSpawnerMenu()
             end
             ESX.TriggerServerCallback("esx_taxijob:SpawnVehicle", function()
                 ESX.ShowNotification(TranslateCap('vehicle_spawned', element.title), "success")
-            end, element.model, {plate = "TAXI JOB"})
+            end, element.model or "taxi", {plate = "TAXI JOB"})
             ESX.CloseContext()
         end, function(menu)
             CurrentAction = 'vehicle_spawner'
