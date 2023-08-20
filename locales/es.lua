@@ -1,5 +1,3 @@
--- Traducción by: https://github.com/ItsManueh & https://github.com/Antho7Twitch
-
 Locales['es'] = {
   -- Vestuario
   ['cloakroom_menu'] = 'Vestuario',
