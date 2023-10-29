@@ -1,4 +1,4 @@
-Locales['en'] = {
+Locales['de'] = {
   -- cloakroom
   ['cloakroom_menu'] = 'Kleidungsmenu',
   ['cloakroom_prompt'] = 'Drücke ~INPUT_CONTEXT~ um das ~y~Kleidungsmenü~s~ zu öffnen.',
