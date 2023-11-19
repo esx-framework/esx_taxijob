@@ -361,51 +361,49 @@ function OpenGetStocksMenu()
 end
 
 function OpenPutStocksMenu()
-    ESX.TriggerServerCallback('esx_taxijob:getPlayerInventory', function(inventory)
-        local elements = {
-            {unselectable = true, icon = "fas fa-box", title = TranslateCap('inventory')}
+    local inventory, elements = ESX.PlayerData.inventory, {
+        {unselectable = true, icon = "fas fa-box", title = TranslateCap('inventory')}
+    }
+
+    for i = 1, #inventory.items, 1 do
+        local item = inventory.items[i]
+        if item.count > 0 then
+            elements[#elements+1] = {
+                icon = "fas fa-box",
+                title = item.label .. ' x' .. item.count,
+                type = 'item_standard',
+                value = item.name
+            }
+        end
+    end
+
+    ESX.OpenContext("right", elements, function(_, element)
+        local itemName = element.value
+
+        local elements2 = {
+            {unselectable = true, icon = "fas fa-box", title = element.title},
+            {title = TranslateCap('amount'), input = true, inputType = "number", inputMin = 1, inputMax = 100, inputPlaceholder = TranslateCap('deposit_amount')},
+            {icon = "fas fa-check-double", title = "Confirm", value = "confirm"}
         }
 
-        for i = 1, #inventory.items, 1 do
-            local item = inventory.items[i]
-            if item.count > 0 then
-                elements[#elements+1] = {
-                    icon = "fas fa-box",
-                    title = item.label .. ' x' .. item.count,
-                    type = 'item_standard',
-                    value = item.name
-                }
+        ESX.OpenContext("right", elements2, function(menu2)
+            local count = tonumber(menu2.eles[2].inputValue)
+
+            if count == nil then
+                ESX.ShowNotification(TranslateCap('quantity_invalid'))
+            else
+                ESX.CloseContext()
+                -- todo: refresh on callback
+                TriggerServerEvent('esx_taxijob:putStockItems', itemName, count)
+                Wait(1000)
+                OpenPutStocksMenu()
             end
-        end
-
-        ESX.OpenContext("right", elements, function(menu,element)
-            local itemName = element.value
-
-            local elements2 = {
-                {unselectable = true, icon = "fas fa-box", title = element.title},
-                {title = TranslateCap('amount'), input = true, inputType = "number", inputMin = 1, inputMax = 100, inputPlaceholder = TranslateCap('deposit_amount')},
-                {icon = "fas fa-check-double", title = "Confirm", value = "confirm"}
-            }
-
-            ESX.OpenContext("right", elements2, function(menu2,element2)
-                local count = tonumber(menu2.eles[2].inputValue)
-
-                if count == nil then
-                    ESX.ShowNotification(TranslateCap('quantity_invalid'))
-                else                    
-                    ESX.CloseContext()
-                    -- todo: refresh on callback
-                    TriggerServerEvent('esx_taxijob:putStockItems', itemName, count)
-                    Wait(1000)
-                    OpenPutStocksMenu()
-                end
-            end)
         end)
-    end, function(menu)
-        CurrentAction = 'taxi_actions_menu'
-        CurrentActionMsg = TranslateCap('press_to_open')
-        CurrentActionData = {}
-    end)  
+    end)
+
+    CurrentAction = 'taxi_actions_menu'
+    CurrentActionMsg = TranslateCap('press_to_open')
+    CurrentActionData = {}
 end
 
 AddEventHandler('esx_taxijob:hasEnteredMarker', function(zone)
