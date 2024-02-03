@@ -393,17 +393,16 @@ function OpenPutStocksMenu()
                 ESX.ShowNotification(TranslateCap('quantity_invalid'))
             else
                 ESX.CloseContext()
-                -- todo: refresh on callback
                 TriggerServerEvent('esx_taxijob:putStockItems', itemName, count)
                 Wait(1000)
                 OpenPutStocksMenu()
             end
         end)
+    end, function()
+        CurrentAction = 'taxi_actions_menu'
+        CurrentActionMsg = TranslateCap('press_to_open')
+        CurrentActionData = {}
     end)
-
-    CurrentAction = 'taxi_actions_menu'
-    CurrentActionMsg = TranslateCap('press_to_open')
-    CurrentActionData = {}
 end
 
 AddEventHandler('esx_taxijob:hasEnteredMarker', function(zone)
