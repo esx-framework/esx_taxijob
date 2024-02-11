@@ -2,10 +2,9 @@ fx_version 'adamant'
 
 game 'gta5'
 
-description 'ESX Taxi Job'
+description 'Allows players to be a taxi driver (Pickup and drop-off NPCs)'
 lua54 'yes'
 version '1.0'
-legacyversion '1.9.1'
 
 shared_script '@es_extended/imports.lua'
 
