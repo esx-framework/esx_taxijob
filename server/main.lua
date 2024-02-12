@@ -117,12 +117,3 @@ AddEventHandler('esx_taxijob:putStockItems', function(itemName, count)
         print(('[^3WARNING^7] Player ^5%s^7 attempted ^5esx_taxijob:putStockItems^7 (cheating)'):format(source))
     end
 end)
-
-ESX.RegisterServerCallback('esx_taxijob:getPlayerInventory', function(source, cb)
-    local xPlayer = ESX.GetPlayerFromId(source)
-    local items = xPlayer.inventory
-
-    cb({
-        items = items
-    })
-end)
