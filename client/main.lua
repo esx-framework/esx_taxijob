@@ -1,6 +1,6 @@
 local HasAlreadyEnteredMarker, OnJob, IsNearCustomer, CustomerIsEnteringVehicle, CustomerEnteredVehicle,
     CurrentActionData = false, false, false, false, false, {}
-local CurrentCustomer, CurrentCustomerBlip, DestinationBlip, targetCoords, LastZone, CurrentAction, CurrentActionMsg
+local CurrentCustomer, CurrentCustomerBlip, DestinationBlip, targetCoords, LastZone, CurrentAction, CurrentActionMsg, lastSelectedNPC
 
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
@@ -40,18 +40,24 @@ function ShowLoadingPromt(msg, time, type)
 end
 
 function GetRandomWalkingNPC()
-        local search = {}
-        local peds = GetGamePool("CPed")
-    
-        for i = 1, #peds, 1 do
-            if IsPedHuman(peds[i]) and IsPedWalking(peds[i]) and not IsPedAPlayer(peds[i]) then
+    local search = {}
+    local peds = GetGamePool("CPed")
+
+    for i = 1, #peds, 1 do
+        if IsPedHuman(peds[i]) and IsPedWalking(peds[i]) and not IsPedAPlayer(peds[i]) then
+            if peds[i] ~= lastSelectedNPC then
                 search[#search+1] = peds[i]
             end
         end
-    
-        if #search > 0 then
-            return search[math.random(#search)]
-        end
+    end
+
+    if #search > 0 then
+        local selectedNPC = search[math.random(#search)]
+        lastSelectedNPC = selectedNPC
+        return selectedNPC
+    else
+        return nil
+    end
 end
 
 function ClearCurrentMission()
