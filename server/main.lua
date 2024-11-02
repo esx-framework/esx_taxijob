@@ -13,7 +13,7 @@ RegisterNetEvent('esx_taxijob:success', function()
     local xPlayer = ESX.GetPlayerFromId(source)
     local timeNow = os.clock()
     
-    if not xPlayer.job.name == 'taxi' then
+    if xPlayer.job.name ~= 'taxi' then
         print(('[^3WARNING^7] Player ^5%s^7 attempted to ^5esx_taxijob:success^7 (cheating)'):format(source))
         return
     end
@@ -47,7 +47,7 @@ end)
 ESX.RegisterServerCallback("esx_taxijob:SpawnVehicle", function(source, cb, model , props)
     local xPlayer = ESX.GetPlayerFromId(source)
 
-    if not xPlayer.job.name == "taxi" then 
+    if xPlayer.job.name ~= "taxi" then 
         print(('[^3WARNING^7] Player ^5%s^7 attempted to Exploit Vehicle Spawing!!'):format(source))
         return
     end
@@ -66,27 +66,27 @@ end)
 RegisterNetEvent('esx_taxijob:getStockItem', function(itemName, count)
     local xPlayer = ESX.GetPlayerFromId(source)
     
-    if not xPlayer.job.name == 'taxi' then
+    if xPlayer.job.name ~= 'taxi' then
         print(('[^3WARNING^7] Player ^5%s^7 attempted ^5esx_taxijob:getStockItem^7 (cheating)'):format(source))
         return
     end
 
     TriggerEvent('esx_addoninventory:getSharedInventory', 'society_taxi', function(inventory)
         local item = inventory.getItem(itemName)
-
-        -- is there enough in the society?
-        if count > 0 and item.count >= count then
-            -- can the player carry the said amount of x item?
-            if xPlayer.canCarryItem(itemName, count) then
-                inventory.removeItem(itemName, count)
-                xPlayer.addInventoryItem(itemName, count)
-                xPlayer.showNotification(TranslateCap('have_withdrawn', count, item.label))
-            else
-                xPlayer.showNotification(TranslateCap('player_cannot_hold'))
-            end
-        else
-            xPlayer.showNotification(TranslateCap('quantity_invalid'))
+        
+        if not xPlayer.canCarryItem(itemName, count) then
+            xPlayer.showNotification(TranslateCap('player_cannot_hold'))
+            return
         end
+
+        if count < 0 and item.count <= count then
+            xPlayer.showNotification(TranslateCap('quantity_invalid'))
+            return
+        end
+
+        inventory.removeItem(itemName, count)
+        xPlayer.addInventoryItem(itemName, count)
+        xPlayer.showNotification(TranslateCap('have_withdrawn', count, item.label))
     end)
 end)
 
@@ -98,23 +98,23 @@ end)
 
 RegisterNetEvent('esx_taxijob:putStockItems', function(itemName, count)
     local xPlayer = ESX.GetPlayerFromId(source)
-    local sourceItem = xPlayer.getInventoryItem(itemName)
+	local sourceItem = xPlayer.getInventoryItem(itemName)
     
-    if not xPlayer.job.name == 'taxi' then
+    if xPlayer.job.name ~= 'taxi' then
         print(('[^3WARNING^7] Player ^5%s^7 attempted ^5esx_taxijob:putStockItems^7 (cheating)'):format(source))
         return
     end
 
     TriggerEvent('esx_addoninventory:getSharedInventory', 'society_taxi', function(inventory)
         local item = inventory.getItem(itemName)
-
-        if sourceItem.count >= count and count > 0 then
-            xPlayer.removeInventoryItem(itemName, count)
-            inventory.addItem(itemName, count)
-            xPlayer.showNotification(TranslateCap('have_deposited', count, item.label))
-        else
-            xPlayer.showNotification(TranslateCap('quantity_invalid'))
+        
+        if sourceItem.count < count or count < 0 then
+            return xPlayer.showNotification(TranslateCap('quantity_invalid'))
         end
+
+        xPlayer.removeInventoryItem(itemName, count)
+        inventory.addItem(itemName, count)
+        xPlayer.showNotification(TranslateCap('have_deposited', count, item.label))
     end)
 end)
 
